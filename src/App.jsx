@@ -18,7 +18,7 @@ function App() {
         <HashRouter>
         <Navbar/>
             <Routes>
-                <Route exact path="/" element={<Admin_panel/>}/>
+                <Route exact path="/" element={<AdminLogin/>}/>
                 <Route exact path="/login" element={<AdminLogin/>}/>
                 <Route exact path="/addproduct" element={<Addproduct/>}/>
                 <Route exact path="/editproduct" element={<Editproduct/>}/>
