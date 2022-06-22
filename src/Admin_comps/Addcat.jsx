@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import LoadingBar from "react-top-loading-bar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function Addcat() {
+    const navigate=useNavigate();
     const [brand, changebrand] = useState('');
     const [category, changecategory] = useState('');
     const [brands, changebrands] = useState([]);
@@ -30,7 +32,12 @@ function Addcat() {
         })
     }
     useEffect(() => {
+        if(!localStorage.getItem('user')){
+            navigate('/login');
+        }
+        else{
         fetchdata();
+        }
     }, [])
     return (
         <>

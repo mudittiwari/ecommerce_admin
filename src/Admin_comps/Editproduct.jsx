@@ -23,10 +23,18 @@ function Editproduct(props) {
     const [desc, changedesc] = useState(location.state.desc);
     const [price, changeprice] = useState(location.state.price);
     useEffect(()=>{
-        if(location.state.photos)
+        if(localStorage.getItem('user'))
         {
-            changeimagearray(JSON.parse(location.state.photos));
+            if(location.state.photos)
+            {
+                changeimagearray(JSON.parse(location.state.photos));
+            }
         }
+        else
+        {
+            navigate('/login');
+        }
+       
     },[]);
     const upload = async (e) => {
         e.preventDefault();

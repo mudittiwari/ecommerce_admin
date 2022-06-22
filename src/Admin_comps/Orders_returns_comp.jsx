@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import order from '../assets/order.png';
 import { useNavigate } from "react-router-dom";
 function Orders_returns_comp(props) {
     const navigate=useNavigate();
+    useEffect(()=>{
+        if(!localStorage.getItem('user')){
+            navigate('/login');
+        }
+    },[])
     return (
         <>
             <div className="flex flex-col w-full" onClick={(e)=>{

@@ -3,8 +3,10 @@ import storage from "../Firebase";
 import { useState } from "react";
 import axios from "axios";
 import LoadingBar from "react-top-loading-bar";
+import { Link, useNavigate } from 'react-router-dom';
 
 function Addproduct() {
+    const navigate = useNavigate();
     const ref = useRef(null);
     const [submit_status,changesubstatus]=useState(false);
     const [upload_status,changeupstatus]=useState(false);
@@ -62,10 +64,10 @@ function Addproduct() {
             // changeupstatus(false);
 
     }
-    // useEffect(()=>{
-    //     console.log(upload_status)
-    //     console.log(submit_status);
-    // },[upload_status,submit_status])
+    useEffect(()=>{
+        if(!localStorage.getItem('user'))
+            navigate('/login')
+    },[])
     return (
         <>
             <LoadingBar style={{ 'backgroundColor': 'red', 'zIndex': 10 }} ref={ref} />

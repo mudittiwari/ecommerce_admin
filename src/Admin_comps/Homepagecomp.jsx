@@ -1,18 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
+import { Link, useNavigate } from 'react-router-dom';
 function Homepagecomp() {
+    const navigate = useNavigate();
     const [products_list, changelist] = useState([]);
     const location = useLocation();
     const [prod_id, changeid] = useState();
     const [submit_status, changesubstatus] = useState(false);
     const ref = useRef();
-    useEffect(async() => {
-        // console.log("mudit tiwari");
-        // console.log(localStorage.getItem('jwt'));
-       
-            await axios.get(`https://infinite-falls-68793.herokuapp.com/${location.state.comp}`, {
+    async function getdata()
+    {
+        await axios.get(`https://infinite-falls-68793.herokuapp.com/${location.state.comp}`, {
                 headers: {
                     Authorization:
                         `Bearer ${localStorage.getItem('jwt')}`,
@@ -26,6 +26,18 @@ function Homepagecomp() {
             });
         
         console.log(products_list);
+    }
+    useEffect(() => {
+        if(localStorage.getItem('user'))
+        {
+            getdata();
+        }
+        else
+        {
+            navigate('/login');
+        }
+       
+            
     }, [])
     return (
         <>

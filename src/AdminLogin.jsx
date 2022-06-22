@@ -16,7 +16,7 @@ function AdminLogin() {
         if (localStorage.getItem('user')) {
 
             if (JSON.parse(localStorage.getItem('user')).isAdmin == true) {
-                navigate("/Admin_dashboard");
+                navigate("/addproduct");
             }
         }
     }, []);
@@ -66,7 +66,7 @@ function AdminLogin() {
                         // console.log(res.data);
                         localStorage.setItem('user', JSON.stringify(res.data.user));
                         localStorage.setItem('jwt',res.data.jwt);
-                        navigate("/Admin_dashboard");
+                        navigate("/addproduct");
                     }).catch((err) => {
                         console.log(err);
                     });

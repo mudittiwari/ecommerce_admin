@@ -36,7 +36,13 @@ function Orderconfirmedcomp(props) {
         }
     }
     useEffect( () => {
-        entry();
+        if(!localStorage.getItem('user')){
+            navigate('/login');
+        }
+        else
+        {
+            entry();
+        }
     }, []);
     return (
         <>

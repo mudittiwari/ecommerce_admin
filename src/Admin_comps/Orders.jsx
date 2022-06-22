@@ -4,8 +4,10 @@ import Orders_returns_comp from "./Orders_returns_comp.jsx";
 import LoadingBar from "react-top-loading-bar";
 // import Navbar from "./Navbar";
 import axios from "axios";
+import { Link, useNavigate } from 'react-router-dom';
 
  function Orders() {
+    const navigate = useNavigate();
     const ref=useRef(null);
     const [orders,changeorders]=useState([]);
     async function fetchorders()
@@ -24,7 +26,10 @@ import axios from "axios";
         });
     }
     useEffect(()=>{
-        fetchorders();
+        if(localStorage.getItem('user'))
+            fetchorders();
+        else
+            navigate('/login')
     },[])
 
     return (
